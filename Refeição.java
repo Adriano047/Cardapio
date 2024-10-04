@@ -29,7 +29,7 @@ public class Refeição extends Alimentos {
             while (true) {
                 var Refeição = JOptionPane.showInputDialog(null, Format + "\nInforme o codigo do alimento para adicionar\n" + Complemento, "Adicionar", 3);                
                 if (Refeição == null) {
-                        listaDeAlimentos.get(C).clear();
+                        listaDeAlimentos.remove(listaDeAlimentos.size() - 1);
                         break main;
                 } 
                 var Arrumar = Refeição.trim();
@@ -64,4 +64,5 @@ public class Refeição extends Alimentos {
     ArrayList<ArrayList<String>> ListaRe() {
         return listaDeAlimentos;
     }
+   
 }
