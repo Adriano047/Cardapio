@@ -12,12 +12,28 @@ public class Cardapio{
         var Lista = Refeição.ListaRe();
         Integer Qtd = Lista.size();
         
-        
         StringBuilder Format = new StringBuilder("Não foi adicionado nenhum item.\n");
         if (Qtd > 0) {
             Format = new StringBuilder("Refeições Disponiveis:\n");
+            
+            
             for (var I = 0; I < Qtd; I++) {
-                    Format.append(I).append(" - ").append(Lista.get(I)).append("\n");
+                StringBuilder Alimentos = new StringBuilder();
+                var MudarTexto = 0;
+                var Texto = "Prato Principal: ";
+                for (var Alimento : Lista.get(I)) {
+                    switch (MudarTexto) {
+                    case 1:
+                        Texto = "| Salada: ";
+                        break;
+                    case 2:
+                        Texto = "| Acompanhamento: ";
+                        break;
+                    }
+                    Alimentos.append(Texto).append(Alimento);
+                    MudarTexto++;
+                }
+                    Format.append(I).append(" - ").append(Alimentos).append("\n");
             }
         }
         var AddRefeição = 0;
@@ -47,50 +63,24 @@ public class Cardapio{
                         Indice++;
                     }
                 }else if(Indice == 1) {
-                    String Turnos[] = {"Mat", "Verp", "Not"};
-                    Integer EscolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:\n- Matutino\n- Vespertino\n- Noturno", "Escolhendo Turno", 0, 3, null, Turnos, Turnos[0]);
-                    Turno Selecionado = Turno.MATUTINO;
-                    switch (EscolherTurno) {
-                        case 1:
-                            Selecionado = Turno.VESPERTINO;
-                            break;
-                        case 2:
-                            Selecionado = Turno.NOTURNO;
-                            break;
-                    }
-                    if(EscolherTurno == -1) {
-                        break;
-                    }else {
-                        Menus.get(C).add(Selecionado.name());
-                        Indice++;
-                    }
-                }else {
                     String Dias[] = {"Dom", "Seg", "Ter","Qua","Qui","Sex", "Sab"};
-                    Integer EscolherDia = JOptionPane.showOptionDialog(null, "Escolha o Turno:\n- Domingo\n- Segunda\n- Terça\n- Quarta\n- Quinta\n- Sexta\n- Sabado", "Escolhendo Dia", 0, 3, null, Dias, Dias[0]);
-                    Semana Selecionado = Semana.DOMINGO;
-                    switch (EscolherDia) {
-                        case 1:
-                            Selecionado = Semana.SEGUNDA;
-                            break;
-                        case 2:
-                            Selecionado = Semana.TERÇA;
-                            break;
-                        case 3:
-                            Selecionado = Semana.QUARTA;
-                            break;
-                        case 4:
-                            Selecionado = Semana.QUINTA;
-                            break;
-                        case 5:
-                            Selecionado = Semana.SEXTA;
-                            break;
-                        case 6:
-                            Selecionado = Semana.SABADO;
-                            break;
-                    }
+                    Integer EscolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:\n- Domingo\n- Segunda\n- Terça\n- Quarta\n- Quinta\n- Sexta\n- Sabado", "Escolhendo Dia", 0, 3, null, Dias, Dias[0]);
                     if(EscolherDia == -1) {
                         break;
                     }else {
+                        var Selecionado = Semana.values()[EscolherDia];
+                        Menus.get(C).add(Selecionado.name());
+                        Indice++;
+                    }
+                    
+                    
+                }else {
+                    String Turnos[] = {"Mat", "Verp", "Not"};
+                    Integer EscolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:\n- Matutino\n- Vespertino\n- Noturno", "Escolhendo Turno", 0, 3, null, Turnos, Turnos[0]);
+                    if(EscolherTurno == -1) {
+                        break;
+                    }else {
+                        Turno Selecionado = Turno.values()[EscolherTurno];
                         Menus.get(C).add(Selecionado.name());
                         Indice++;
                         C++;
@@ -98,5 +88,8 @@ public class Cardapio{
                 } 
             }
             
+    }
+    ArrayList<ArrayList<String>> GetMenu() {
+        return Menus;
     }
 }
