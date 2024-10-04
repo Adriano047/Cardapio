@@ -1,4 +1,3 @@
-package DesafioIn.Cardapio;
 
 public class Iniciar {
     public static void main(String[] args) {
