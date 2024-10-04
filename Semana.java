@@ -1,4 +1,3 @@
-package DesafioIn.Cardapio;
 
 public enum Semana {
     DOMINGO, 
