@@ -2,7 +2,7 @@
 public enum Semana {
     DOMINGO, 
     SEGUNDA,
-    TERÇA,
+    TERCA,
     QUARTA,
     QUINTA,
     SEXTA,
