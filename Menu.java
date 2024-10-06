@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 public class Menu {
     Alimentos Alimentos = new Alimentos();    
     Refeição Refeição = new Refeição();    
-    Cardapio Cardapio = new Cardapio();    
+    Cardapio Cardapio = new Cardapio();
     Semanal Menu = new Semanal();    
     void Iniciar() {
         while (true) {
@@ -19,8 +19,10 @@ public class Menu {
             }else if(Valor.equals(3)) {
                 Menu.DaSemana();
             }else if(Valor.equals(4)) {
-                Menu.ResultadoFinal();
+                JOptionPane.showMessageDialog(null, Menu.VerificarProgressao());
+                
             }else {
+                System.out.println(Menu.ResultadoFinal());
                 break;
             } 
         } 
