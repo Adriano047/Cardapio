@@ -1,5 +1,5 @@
 <a id="readme-top"></a>
-# 🎫 Cardapio
+# 🍽️ Cardapio
 Um sistema de criação de cardápio que permite adicionar refeições em um loop contínuo, organizando-as por dia da semana e turno. As refeições são organizadas em três categorias: Prato Principal, Salada e Acompanhamento. O sistema também oferece a funcionalidade de substituir refeições existentes caso novos valores sejam inseridos.
 
 ## ⚙️ Funcionalidades 
