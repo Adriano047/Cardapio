@@ -9,20 +9,24 @@ Um sistema de criação de cardápio que permite adicionar refeições em um loo
 
 
 ## 💻 Telas 
-### Menu:
-![Menu](https://github.com/user-attachments/assets/0fa78fc9-3562-4435-9ddb-d82ed6c78d3f)
+### Adicionar:
+![Add](https://github.com/user-attachments/assets/7e7179ff-618f-4690-a5b9-cce4deb17398)
 
-### Emitir:
-![Emitir](https://github.com/user-attachments/assets/414c7053-a3c6-486b-8636-70d137327d94)
+### Filtro Dia da Semana:
+![DiaSemana](https://github.com/user-attachments/assets/96168368-9150-4f59-9d09-fc0af5e3593c)
 
-### Pagar Ticket:
-![Pagar](https://github.com/user-attachments/assets/458a1128-f3f2-4564-95e6-8154818e9b99)
 
-### Mostrar Tickets Pagos e Total Obtido:
-[![TIcketsPagos](https://github.com/user-attachments/assets/75515c1d-35f1-4f93-ba9b-248bf0e05124)](https://github.com/user-attachments/assets/4c8acbfa-6362-49bc-97e0-7a81fccb0df8)
+### Filtro de Turno:
+![TurnoFoto](https://github.com/user-attachments/assets/b97a26dc-4ba6-4cd0-9fda-ff8f1d0926ee)
 
-## 👨‍💻 Rodando o Programa
-https://github.com/user-attachments/assets/c94e2eb9-baa1-4268-9b02-b12500938663
+### Adicionando Alimentos:
+![PratoPricipal](https://github.com/user-attachments/assets/9068c204-f885-46f4-9cc8-89bb484af716)
+
+### Troca de Valores: 
+![Troca](https://github.com/user-attachments/assets/ba29632d-10ab-41e9-a331-395e5b04769a)
+
+
+
 
 ## :octocat: Faça o clone do projeto
 
