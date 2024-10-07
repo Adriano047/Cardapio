@@ -1,116 +1,95 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
-public class Cardapio {
-    static ArrayList<ArrayList<String>> Cardapio = new ArrayList<>();
-    void Add() {
-        ArrayList<String> novaLista = new ArrayList<>();
-        String Dias[] = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"};
-        Integer EscolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:", "Escolhendo Dia", 0, 3, null, Dias, Dias[0]);
-        if (EscolherDia == -1) return;
-
-        String Turnos[] = {"Mat", "Verp", "Not"};
-        Integer EscolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:", "Escolhendo Turno", 0, 3, null, Turnos, Turnos[0]);
-        if (EscolherTurno == -1) return;
-
-        Semana SelecionarDia = Semana.values()[EscolherDia];
-        Turno SelecionarTurno = Turno.values()[EscolherTurno];
-
-        String diaNome = SelecionarDia.name();
-        String turnoNome = SelecionarTurno.name();
+public class Cardapio{
+    static ArrayList<ArrayList<String>> Menus = new ArrayList<>();
+    Refeição Refeição = new Refeição();
+    Integer C = 0;
+    void Montar() {
+        Menus.add(new ArrayList<>());
+        var Lista = Refeição.ListaRe();
+        Integer Qtd = Lista.size();
         
-        for (int i = 0; i < Cardapio.size(); i++) {
-            var item = Cardapio.get(i);
-            if (item.get(0).equals(diaNome) && item.get(1).equals(turnoNome)) {
-                String Op[] = {"Sim", "Não"};
-                StringBuilder ValorAssociado = new StringBuilder("Valor Atual:\n");
-                var Cont = 0;
-                for (var Valor: Cardapio.get(i)) {
-                    if (Cont == 2) {
-                        ValorAssociado.append("Prato Principal:" + " ".repeat(17)).append(Valor).append("\n");
-                    }else if (Cont == 3) {
-                        ValorAssociado.append("Salada:"  + " ".repeat(32)).append(Valor).append("\n");
-                    } if (Cont == 4) {
-                        ValorAssociado.append("Acompanhamento:"  + " ".repeat(11)).append(Valor).append("\n");
+        StringBuilder Format = new StringBuilder("Não foi adicionado nenhum item.\n");
+        if (Qtd > 0) {
+            Format = new StringBuilder("Refeições Disponiveis:\n");
+            
+            
+            for (var I = 0; I < Qtd; I++) {
+                StringBuilder Alimentos = new StringBuilder();
+                var MudarTexto = 0;
+                var Texto = "Prato Principal: ";
+                for (var Alimento : Lista.get(I)) {
+                    switch (MudarTexto) {
+                    case 1:
+                        Texto = "| Salada: ";
+                        break;
+                    case 2:
+                        Texto = "| Acompanhamento: ";
+                        break;
                     }
-                    Cont++;
+                    Alimentos.append(Texto).append(Alimento);
+                    MudarTexto++;
                 }
-                Integer continuar = JOptionPane.showOptionDialog(null, ValorAssociado + "\nJa possui um valor Associado dejesa Trocar?", "Trocar:", 0, 3, null, Op, Op[0]);
-                if (continuar != 0) {
-                    Cardapio.remove(Cardapio.size() - 1);
-                    return;
-                }
-                novaLista = item; 
-                break;
+                    Format.append(I).append(" - ").append(Alimentos).append("\n");
             }
         }
-        Cardapio.add(novaLista);
-        novaLista.add(diaNome);
-        novaLista.add(turnoNome);
+        var AddRefeição = 0;
+            var Indice = 0;
+            while(Indice < 3) {
+                if (Indice == 0) {
+                    var Conversivel = true;
+                    var Valor = JOptionPane.showInputDialog(null, Format + "\nInforme o codigo da refeição para adicionar\n", "Adicionar Cardapio", 3);
+                    if(Valor == null) {
+                        break;
+                    }
+                    try {
+                        var Verifar = Valor.trim();
+                        AddRefeição = Integer.parseInt(Verifar); 
+                    
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Erro digite um numero inteiro",null,  0);
+                        Conversivel = false;
+                    } 
+                    if(AddRefeição >= Lista.size() || AddRefeição < 0) {
+                            JOptionPane.showMessageDialog(null, "Erro Codigo Não encontrado",null,  0);
+                            Conversivel = false;
 
-        for (int index = 2; index < 5; index++) {
-            String complemento = index == 2 ? "ao Prato Principal" : index == 3 ? "à Salada" : "o Acompanhamento";
-            String addValor = JOptionPane.showInputDialog("Adicionando " + complemento);
-            if (addValor == null) {
-                Cardapio.remove(Cardapio.size() - 1);
-                return;
-            }
-
-            String format = addValor.trim();
-            if (format.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Digite Algo");
-                index--;
-            } else {
-                if (index < novaLista.size()) {
-                    novaLista.set(index, format);
-                } else {
-                    novaLista.add(format);
-                }
-            }
-        }
-    }
-    StringBuilder Vericar() {
-        String Dias[] = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"};
-        Integer EscolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:", "Escolhendo Dia", 0, 3, null, Dias, Dias[0]);
-        Semana SelecionarDia = Semana.values()[EscolherDia];
-        String diaNome = SelecionarDia.name();
-        
-        
-
-        StringBuilder StatusAtual = new StringBuilder();
-        StatusAtual.append(" ".repeat(10)).append(SelecionarDia).append("\n").append("-".repeat(30)).append("\n");
-        ArrayList<String> OrganizarLista = new ArrayList<>(Arrays.asList("", "", ""));
-        if (Cardapio.size() > 0) {
-            for (var Item : Cardapio) {
-                
-                if(Item.get(0).equals(diaNome)) {
-                    if (Item.get(1).equals("MATUTINO")) {
-                        OrganizarLista.set(0, Item.toString());
-                        
-                    }else if (Item.get(1).equals("VESPETINO")) {
-                        OrganizarLista.set(1, Item.toString());
-                        
-                    }else if (Item.get(1).equals("NOTURNO")) {
-                        OrganizarLista.set(2, Item.toString());
+                    }
+                    if (Conversivel == true) {
+                        Menus.get(C).addAll(Lista.get(AddRefeição));
+                        Indice++;
+                    }
+                }else if(Indice == 1) {
+                    String Dias[] = {"Dom", "Seg", "Ter","Qua","Qui","Sex", "Sab"};
+                    Integer EscolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:\n- Domingo\n- Segunda\n- Terça\n- Quarta\n- Quinta\n- Sexta\n- Sabado", "Escolhendo Dia", 0, 3, null, Dias, Dias[0]);
+                    if(EscolherDia == -1) {
+                        break;
+                    }else {
+                        var Selecionado = Semana.values()[EscolherDia];
+                        Menus.get(C).add(Selecionado.name());
+                        Indice++;
                     }
                     
-                }
+                    
+                }else {
+                    String Turnos[] = {"Mat", "Verp", "Not"};
+                    Integer EscolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:\n- Matutino\n- Vespertino\n- Noturno", "Escolhendo Turno", 0, 3, null, Turnos, Turnos[0]);
+                    if(EscolherTurno == -1) {
+                        break;
+                    }else {
+                        Turno Selecionado = Turno.values()[EscolherTurno];
+                        Menus.get(C).add(Selecionado.name());
+                        Indice++;
+                        C++;
+                    }
+                } 
             }
-        }
-                
-        for (var P : OrganizarLista) {
-            if (!P.isEmpty()) {
-                StatusAtual.append(P).append("\n");
-            }
-        }
-        return StatusAtual;
-
+            
     }
-    StringBuilder ResultadoFinal() {
-        StringBuilder Vazio = new StringBuilder();
-        return Vazio;
+    ArrayList<ArrayList<String>> GetMenu() {
+        return Menus;
     }
 }
