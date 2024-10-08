@@ -6,12 +6,14 @@ public class Cardapio {
     static ArrayList<ArrayList<String>> cardapio = new ArrayList<>();
 
     void Add() {
-        String[] dias = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"};
-        int escolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:", "Escolhendo Dia", 0, JOptionPane.INFORMATION_MESSAGE, null, dias, dias[0]);
+        String[] dias = {"DOMINGO", "SEGUNDA", "TERÇA", "QUARTA", "QUINTA", "SEXTA", "SABADO"};
+        String[] diasParaMenu = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"};
+        int escolherDia = JOptionPane.showOptionDialog(null, "Escolha o Dia:\n- Domingo\n- Segunda\n- Terça\n- Quarta\n- Quinta\n- Sexta\n- Sabado", "Escolhendo Dia", 0, 3, null, diasParaMenu, diasParaMenu[0]);
         if (escolherDia == -1) return;
 
-        String[] turnos = {"Mat", "Verp", "Not"};
-        int escolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:", "Escolhendo Turno", 0, JOptionPane.INFORMATION_MESSAGE, null, turnos, turnos[0]);
+        String[] turnos = {"MATUTINO", "VESPERTINO", "NOTURNO"};
+        String[] turnosParaMenu = {"Mat", "Verp", "Not"};
+        int escolherTurno = JOptionPane.showOptionDialog(null, "Escolha o Turno:\n- Matutino\n- Vespertino\n- Noturno", "Escolhendo Turno", 0, 3, null, turnosParaMenu, turnosParaMenu[0]);
         if (escolherTurno == -1) return;
 
         String diaNome = dias[escolherDia];
