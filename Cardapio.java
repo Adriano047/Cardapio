@@ -30,7 +30,15 @@ public class Cardapio {
             valorAtual.append("Acompanhamento: " +  " ".repeat(11)).append(refeicaoExistente.get(4)).append("\n");
 
             int continuar = JOptionPane.showOptionDialog(null, valorAtual + "\nJá possui uma refeição associada. Deseja trocar?", "Trocar:", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
-            if (continuar != JOptionPane.YES_OPTION) return; // Se não quiser trocar, sai do método
+            if (addValor == null) {
+                for (var Index = 0; Index < cardapio.size();Index++) {
+                    if(cardapio.get(Index).get(0).equals(diaNome) && cardapio.get(Index).get(1).equals(turnoNome)) {
+                        cardapio.remove(Index);
+                        break;
+                    }
+                }
+                return;
+            } // Se não quiser trocar, sai do método
         }
 
         // Adiciona ou substitui as refeições (Prato Principal, Salada e Acompanhamento)
