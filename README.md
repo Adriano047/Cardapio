@@ -25,6 +25,8 @@ Um sistema de criação de cardápio que permite adicionar refeições em um loo
 ### Troca de Valores: 
 ![Troca](https://github.com/user-attachments/assets/ba29632d-10ab-41e9-a331-395e5b04769a)
 
+### Rodando Codigo:
+https://github.com/user-attachments/assets/33bb18b9-61d3-4410-b578-daf3254c73c1
 
 
 
