@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 
 public class Menu {
     Cardapio Cardapio = new Cardapio();
+    Resultado Mostrar = new Resultado();
      void Iniciar() {
         while (true) {
            String Opcoes[] = {"Add"};
@@ -10,7 +11,7 @@ public class Menu {
             if(Valor.equals(0)) {
                 Cardapio.Add();
             }else {
-                System.out.println(Cardapio.ResultadoFinal());
+                System.out.println(Mostrar.ResultadoFinal());
                 break;
             } 
         } 
