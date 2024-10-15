@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 public class Cardapio {
     static ArrayList<ArrayList<String>> cardapio = new ArrayList<>();
-    CriarCardapio Criar = new CriarCardapio();
     void Add() {
         String[] dias = {"DOMINGO", "SEGUNDA", "TERÇA", "QUARTA", "QUINTA", "SEXTA", "SABADO"};
         String[] diasParaMenu = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"};
@@ -19,7 +18,7 @@ public class Cardapio {
         String diaNome = dias[escolherDia];
         String turnoNome = turnos[escolherTurno];
         
-        ArrayList<String> refeicaoExistente = Criar.encontrarOuCriarCardapio(diaNome, turnoNome);
+        ArrayList<String> refeicaoExistente = encontrarOuCriarCardapio(diaNome, turnoNome);
         
         // Se já houver uma refeição associada, pergunta ao usuário se deseja substituir
         if (refeicaoExistente.size() > 2) {
@@ -60,7 +59,19 @@ public class Cardapio {
             
         }
     }
-
+    private ArrayList<String> encontrarOuCriarCardapio(String diaNome, String turnoNome) {
+        for (ArrayList<String> item : cardapio) {
+            if (item.get(0).equals(diaNome) && item.get(1).equals(turnoNome)) {
+                return item; // Retorna a lista existente
+            }
+        }
+        // Cria uma nova entrada se não houver
+        ArrayList<String> novaLista = new ArrayList<>();
+        novaLista.add(diaNome);
+        novaLista.add(turnoNome);
+        cardapio.add(novaLista); // Adiciona uma nova lista ao cardápio
+        return novaLista; // Retorna a nova lista
+    }
     
 
    
